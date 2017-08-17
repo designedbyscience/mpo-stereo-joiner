@@ -17,7 +17,8 @@ Dir["*_left.jpg"].each do |image|
     
     joined_image = Magick::ImageList.new(image, right_image).append(false)
     joined_image.write("jpeg:" + image.match(/(.*)_left.jpg/)[1] + "_joined.jpg")
-   
+    joined_image.destroy!
+ 
     FileUtils.rm(image)
     FileUtils.rm(right_image)
 end
